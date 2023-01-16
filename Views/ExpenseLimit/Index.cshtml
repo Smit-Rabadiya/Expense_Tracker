@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Demo.Models.ExpenseLimit>
+@{
+    ViewData["Title"] = "Total Limit";
+}
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h3>Total Set Limit</h3>
+        <table class="table table-striped-columns" style="text-align:center;border-color:black;">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Expense_Limit)
+                    </th>
+                    <th>
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <a asp-controller="ExpenseLimit" asp-action="Add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Add Limit</a>
+                <br />
+                <br />
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.Expense_Limit)
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a asp-controller="ExpenseLimit" asp-action="Edit" asp-route-id="@item.LimitID" class="btn btn-secondary"><i class="fas fa-edit"></i>Edit</a>&nbsp;&nbsp;
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

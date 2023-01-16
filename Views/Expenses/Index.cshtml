@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Demo.Models.Expenses>
+@{
+    ViewData["Title"] = "Expenses";
+}
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h3>Expense List - Manager</h3>
+        <table class="table table-striped-columns" style="text-align:center;border-color:black;">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        <a asp-action="AddOrEdit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.Category)
+                        </td>
+                        <td width="50px">
+                            @Html.DisplayFor(modelItem=>item.Date)
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a asp-action="AddOrEdit" asp-route-id="@item.ExpenseId" class="btn btn-secondary"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                                <form asp-action="Delete" asp-route-id="@item.ExpenseId">
+                                    <button type="submit" class="btn-danger" style="height:fit-content" onclick="return confirm('Are you sure to delete the record')">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model Demo.Models.ExpenseLimit
+@{
+    ViewData["Title"] = "Expense Limit";
+}
+
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Add Category</h3>
+        <form method="post" asp-action="Edit" autocomplete="off">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                    <h2 class="text-primary"></h2>
+                    <hr />
+                </div>
+                <input type="hidden" asp-for="LimitID" />
+                <div class="form-group mb-3">
+                    <label asp-for="Expense_Limit"></label>
+                    <input asp-for="Expense_Limit" class="form-control" type="int" />
+                </div>
+                <button type="submit" class=" btn btn-primary" style="font-size:larger;height:60px;width:150px">SUBMIT</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-controller="ExpenseLimit" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        //<partial name="_ValidationScriptsPartial" />
+    }
+}

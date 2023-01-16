@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Demo.Models.Category>
+@{
+    ViewData["Title"] = "Categories";
+}
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h3>Category List - Manager</h3>
+        <table class="table table-striped-columns" style="text-align:center;border-color:black;">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CategoryLimit)
+                    </th>
+                    <th>
+                        <a asp-controller="Category" asp-action="AddOrEdit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.CategoryLimit)
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a asp-controller="Category" asp-action="AddOrEdit" asp-route-id="@item.CategoryId" class="btn btn-secondary"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                                <form asp-action="Delete" asp-route-id="@item.CategoryId">
+                                    <button type="submit" class="btn-danger" style="height:fit-content" onclick="return confirm('Are you sure to delete the record')">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
